@@ -1,6 +1,9 @@
 package andrew.samardak.spring_aop.service.impl;
 
+import andrew.samardak.spring_aop.dto.request.AccountRequestDto;
+import andrew.samardak.spring_aop.dto.response.AccountResponseDto;
 import andrew.samardak.spring_aop.entity.Account;
+import andrew.samardak.spring_aop.mappers.AccountMapper;
 import andrew.samardak.spring_aop.repository.AccountRepository;
 import andrew.samardak.spring_aop.service.AccountService;
 import lombok.AccessLevel;
@@ -19,5 +22,15 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public JpaRepository<Account, Long> getRepository() {
         return repository;
+    }
+
+    @Override
+    public Account accountRequestDtoToAccount(AccountRequestDto dto) {
+        return AccountMapper.INSTANCE.toEntity(dto);
+    }
+
+    @Override
+    public AccountResponseDto accountToAccountResponseDto(Account entity) {
+        return AccountMapper.INSTANCE.toDto(entity);
     }
 }

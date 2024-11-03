@@ -1,6 +1,9 @@
 package andrew.samardak.spring_aop.service.impl;
 
+import andrew.samardak.spring_aop.dto.request.TransactionRequestDto;
+import andrew.samardak.spring_aop.dto.response.TransactionResponseDto;
 import andrew.samardak.spring_aop.entity.Transaction;
+import andrew.samardak.spring_aop.mappers.TransactionMapper;
 import andrew.samardak.spring_aop.repository.TransactionRepository;
 import andrew.samardak.spring_aop.service.TransactionService;
 import lombok.AccessLevel;
@@ -19,5 +22,15 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public JpaRepository<Transaction, Long> getRepository() {
         return repository;
+    }
+
+    @Override
+    public Transaction transactionRequestDtoToTransaction(TransactionRequestDto dto) {
+        return TransactionMapper.INSTANCE.toEntity(dto);
+    }
+
+    @Override
+    public TransactionResponseDto transactionToTransactionResponseDto(Transaction entity) {
+        return TransactionMapper.INSTANCE.toDto(entity);
     }
 }
