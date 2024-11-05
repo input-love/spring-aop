@@ -3,6 +3,7 @@ package andrew.samardak.spring_aop.service.impl;
 import andrew.samardak.spring_aop.dto.request.TransactionRequestDto;
 import andrew.samardak.spring_aop.dto.response.TransactionResponseDto;
 import andrew.samardak.spring_aop.entity.Transaction;
+import andrew.samardak.spring_aop.mappers.BaseMapper;
 import andrew.samardak.spring_aop.mappers.TransactionMapper;
 import andrew.samardak.spring_aop.repository.TransactionRepository;
 import andrew.samardak.spring_aop.service.TransactionService;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 public class TransactionServiceImpl implements TransactionService {
 
     TransactionRepository repository;
+    TransactionMapper mapper;
 
     @Override
     public JpaRepository<Transaction, Long> getRepository() {
@@ -25,12 +27,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public Transaction transactionRequestDtoToTransaction(TransactionRequestDto dto) {
-        return TransactionMapper.INSTANCE.toEntity(dto);
-    }
-
-    @Override
-    public TransactionResponseDto transactionToTransactionResponseDto(Transaction entity) {
-        return TransactionMapper.INSTANCE.toDto(entity);
+    public BaseMapper<Transaction, TransactionRequestDto, TransactionResponseDto> getMapper() {
+        return mapper;
     }
 }

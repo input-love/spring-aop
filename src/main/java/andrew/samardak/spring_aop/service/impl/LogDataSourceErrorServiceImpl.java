@@ -6,7 +6,6 @@ import andrew.samardak.spring_aop.service.LogDataSourceErrorService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,7 +16,7 @@ public class LogDataSourceErrorServiceImpl implements LogDataSourceErrorService 
     DataSourceErrorLogRepository repository;
 
     @Override
-    public JpaRepository<DataSourceErrorLog, Long> getRepository() {
-        return repository;
+    public DataSourceErrorLog create(DataSourceErrorLog entity) {
+        return repository.save(entity);
     }
 }
