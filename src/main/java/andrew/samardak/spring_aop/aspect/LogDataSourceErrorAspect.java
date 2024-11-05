@@ -35,6 +35,6 @@ public class LogDataSourceErrorAspect {
                 .message(ex.getMessage())
                 .methodSignature(joinPoint.getSignature().toLongString()).build();
 
-        service.getRepository().save(entity);
+        service.create(entity);
     }
 }
