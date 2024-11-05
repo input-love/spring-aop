@@ -9,3 +9,9 @@ services:
       - 'POSTGRES_USER=postgres'
     ports:
       - '5433:5432'
+
+  spring-aop:
+    build: .
+    container_name: spring-aop
+    ports:
+      - '8080:8080'
