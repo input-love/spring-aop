@@ -28,9 +28,9 @@ COMMENT ON COLUMN transactions.transaction_time IS 'Время выполнен�
 CREATE TABLE error_logs
 (
     id               BIGSERIAL PRIMARY KEY,
-    stack_trace      TEXT         NOT NULL,
-    message          VARCHAR(255) NOT NULL,
-    method_signature TEXT         NOT NULL
+    stack_trace      TEXT NOT NULL,
+    message          TEXT NOT NULL,
+    method_signature TEXT NOT NULL
 );
 
 COMMENT ON TABLE error_logs IS 'Таблица для хранения логов ошибок';
